@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Book Tree view -->
+    <record model="ir.ui.view" id="book_tree">
+        <field name="name">library.book.tree</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <tree string="book">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="edition"/>
+                <field name="isbn"/>
+            </tree>
+        </field>
+    </record>
+    <!--Book form view -->
+    <record model="ir.ui.view" id="book_form">
+        <field name="name">library.book.form</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <form string="book">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="author"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="editor"/>
+                        </group>
+                        <group>
+                            <field name="edition"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="isbn"/>
+                        <field name="image"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--Book record -->
+    <record model="ir.actions.act_window" id="action_book">
+        <field name="name">Book</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Book.</p>
+        </field>
+    </record>
+
+    <!-- Author form view -->
+    <record model="ir.ui.view" id="author_form">
+        <field name="name">library.author.form</field>
+        <field name="model">author</field>
+        <field name="arch" type="xml">
+            <form string="author">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                        </group>
+                        <group>
+                            <field name="last_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="book_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Author form view -->
+    <record model="ir.ui.view" id="author_tree">
+        <field name="name">library.author.tree</field>
+        <field name="model">author</field>
+        <field name="arch" type="xml">
+            <tree string="author">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Author record -->
+    <record model="ir.actions.act_window" id="action_author">
+        <field name="name">Author</field>
+        <field name="res_model">author</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Author.</p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_customer">
+        <field name="name">Customer</field>
+        <field name="res_model">customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Customer.</p>
+        </field>
+    </record>
+    <!--Rent tree view -->
+    <record model="ir.ui.view" id="rent_tree">
+        <field name="name">library.rent.tree</field>
+        <field name="model">book.rent</field>
+        <field name="arch" type="xml">
+            <tree name="rent">
+                <field name="book"/>
+                <field name="customer"/>
+                <field name="rental_date"/>
+                <field name="return_date"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_rent">
+        <field name="name">Rent</field>
+        <field name="res_model">book.rent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Rent.</p>
+        </field>
+    </record>
+
+    <menuitem id="library_root" name="Library" sequence="1"/>
+    <menuitem id="library_book" name="Book" parent="library_root" action="action_book"/>
+    <menuitem id="library_author" name="Author" parent="library_root" action="action_author"/>
+    <menuitem id="library_customer" name="Customer" parent="library_root" action="action_customer"/>
+    <menuitem id="library_rent" name="Rent" parent="library_root" action="action_rent"/>
+</odoo>

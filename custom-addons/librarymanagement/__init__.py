@@ -1,0 +1,1 @@
+from .models import book, author, customer, rent
