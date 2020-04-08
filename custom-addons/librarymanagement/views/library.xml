@@ -10,6 +10,8 @@
                 <field name="author"/>
                 <field name="edition"/>
                 <field name="isbn"/>
+                <field name="price"/>
+                <field name="total_copy"/>
             </tree>
         </field>
     </record>
@@ -26,6 +28,14 @@
                     </group>
                     <group>
                         <group>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="total_copy"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
                             <field name="editor"/>
                         </group>
                         <group>
@@ -35,6 +45,9 @@
                     <group>
                         <field name="isbn"/>
                         <field name="image"/>
+                    </group>
+                    <group>
+                        <field name="category"/>
                     </group>
                 </sheet>
             </form>
@@ -121,7 +134,40 @@
                 <field name="customer"/>
                 <field name="rental_date"/>
                 <field name="return_date"/>
+                <field name="due_price"/>
             </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="rent_form">
+        <field name="name">library.rent.form</field>
+        <field name="model">book.rent</field>
+        <field name="arch" type="xml">
+            <form string="rent_form">
+                <header>
+                    <button name="action_rent" type="object" states="draft" string="Rent" class="oe_highlight"/>
+                    <button name="action_returned" type="object" states="rent" string="Return" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,rent,return"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="book"/>
+                    </group>
+                    <group>
+                        <field name="customer"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rental_date"/>
+                        </group>
+                        <group>
+                            <field name="return_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="due_price"/>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_rent">
