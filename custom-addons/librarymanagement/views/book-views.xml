@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Book Tree view -->
+    <record model="ir.ui.view" id="book_tree">
+        <field name="name">library.book.tree</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <tree string="book">
+                <field name="name"/>
+                <field name="author"/>
+                <field name="edition"/>
+                <field name="isbn"/>
+                <field name="price"/>
+                <field name="total_copy"/>
+            </tree>
+        </field>
+    </record>
+    <!--Book form view -->
+    <record model="ir.ui.view" id="book_form">
+        <field name="name">library.book.form</field>
+        <field name="model">book</field>
+        <field name="arch" type="xml">
+            <form string="book">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="author"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="total_copy"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="editor"/>
+                        </group>
+                        <group>
+                            <field name="edition"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="isbn"/>
+                        <field name="image"/>
+                    </group>
+                    <group>
+                        <field name="category"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--Book record -->
+    <record model="ir.actions.act_window" id="action_book">
+        <field name="name">Book</field>
+        <field name="res_model">book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Book.</p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="customer-form">
+        <field name="name">customer.form</field>
+        <field name="model">customer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                        </group>
+                        <group>
+                            <field name="last_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Rental Info">
+                            <field name="rental_ids"/>
+                        </page>
+                        <page string="Payment Info">
+                            <field name="payment_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_customer">
+        <field name="name">Customer</field>
+        <field name="res_model">customer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Customer.</p>
+        </field>
+    </record>
+</odoo>

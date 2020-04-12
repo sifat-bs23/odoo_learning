@@ -12,3 +12,5 @@ class Customer(models.Model):
     email = fields.Char(string='Email')
     address = fields.Char(string='Address')
     image = fields.Binary()
+    rental_ids = fields.One2many('book.rent', 'customer')
+    payment_ids = fields.One2many('book.payment', 'customer_ids')

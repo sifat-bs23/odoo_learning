@@ -1,1 +1,1 @@
-from . import book, author, customer, rent
+from . import book, author, customer, rent, payment

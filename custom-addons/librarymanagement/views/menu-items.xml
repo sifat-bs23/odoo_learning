@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="library_root" name="Library" sequence="1"/>
+    <menuitem id="library_book" name="Book" parent="library_root" action="action_book"/>
+    <menuitem id="library_author" name="Author" parent="library_root" action="action_author"/>
+    <menuitem id="library_customer" name="Customer" parent="library_root" action="action_customer"/>
+    <menuitem id="library_rent" name="Rent" parent="library_root" action="action_rent"/>
+    <menuitem id="library_payment" name="Payment" parent="library_root" action="action_payment"/>
+</odoo>

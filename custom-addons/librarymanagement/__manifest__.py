@@ -23,7 +23,12 @@
 
     # always loaded
     'data': [
-        'views/library.xml',
+        'views/menu-items.xml',
+        'views/author-views.xml',
+        'views/book-views.xml',
+        'views/customer-views.xml',
+        'views/rental-views.xml',
+        'views/payment-views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

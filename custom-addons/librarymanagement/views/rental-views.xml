@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Rent tree view -->
+    <record model="ir.ui.view" id="rent_tree">
+        <field name="name">library.rent.tree</field>
+        <field name="model">book.rent</field>
+        <field name="arch" type="xml">
+            <tree name="rent" decoration-danger="return_date&lt;current_date">
+                <field name="book"/>
+                <field name="customer"/>
+                <field name="rental_date"/>
+                <field name="return_date"/>
+                <field name="due_price"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="rent_form">
+        <field name="name">library.rent.form</field>
+        <field name="model">book.rent</field>
+        <field name="arch" type="xml">
+            <form string="rent_form">
+                <header>
+                    <button name="action_rent" type="object" states="draft" string="Rent" class="oe_highlight"/>
+                    <button name="action_returned" type="object" states="rent" string="Return" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,rent,return"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="book" widget="Many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="customer" widget="many2one_tags"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rental_date"/>
+                        </group>
+                        <group>
+                            <field name="return_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="due_price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_rent">
+        <field name="name">Rent</field>
+        <field name="res_model">book.rent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Rent.</p>
+        </field>
+    </record>
+</odoo>

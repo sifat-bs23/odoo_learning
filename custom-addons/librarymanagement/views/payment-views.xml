@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="payment-form">
+        <field name="name">payment.form</field>
+        <field name="model">book.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_pay" type="object" states="unpaid" string="Rent" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="payment_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="due_amount" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="extra_charge"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Book" name="book-info">
+                            <field name="book_ids">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Customer" name="customer-info">
+                            <field name="customer_ids">
+                                <tree>
+                                    <field name="first_name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="payment-tree">
+        <field name="name">payment.tree</field>
+        <field name="model">book.payment</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state=='unpaid'">
+                <field name="customer_ids" widget="man2one_tags"/>
+                <field name="due_amount"/>
+                <field name="extra_charge"/>
+                <field name="total_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_payment">
+        <field name="name">Payment</field>
+        <field name="res_model">book.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create Rent.</p>
+        </field>
+    </record>
+</odoo>

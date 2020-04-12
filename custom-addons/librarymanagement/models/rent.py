@@ -53,14 +53,6 @@ class Rent(models.Model):
 
         if errors:
             raise ValidationError(errors)
-        else:
-            for book in all_books:
-                get_cur_book = self.env['book'].search([
-                    ('id', '=', book)
-                ])
-                get_cur_book.write({
-                    'total_copy': get_cur_book.total_copy - 1
-                })
 
         result = super(Rent, self).create(vals)
         return result
@@ -69,29 +61,30 @@ class Rent(models.Model):
         state = vals.get('state', None)
         cur_book = vals.get('book', None)
         all_books = []
-        if state != 'rent':
-            if cur_book:
-                all_books = cur_book[0][2]
+        if cur_book:
+            all_books = cur_book[0][2]
+        if self.state == 'draft' and state != 'rent':
             errors = self.get_book_errors(all_books)
             if errors:
-                raise ValidationError(errors)
-            else:
-                cur_book_ids = []
-                for i in self.book:
-                    cur_book_ids.append(i.id)
-                if cur_book or state == 'return':
-                    for book in self.book:
-                        if book.id not in all_books:
-                            book.write({
-                                'total_copy': book.total_copy + 1
-                            })
+                raise UserError(errors)
+        # if self.state != 'draft' and not state:
+        #     raise UserError('Order is not in Editable state')
+        elif state == 'rent':
+            for book in self.book:
+                book.write({
+                    'total_copy': book.total_copy - 1
+                })
 
-                for book in all_books:
-                    if book not in cur_book_ids:
-                        get_cur_book = self.book.search([('id', '=', book)])
-                        get_cur_book.write({
-                            'total_copy': get_cur_book.total_copy - 1
-                        })
+        elif state == 'return':
+            for book in self.book:
+                book.write({
+                    'total_copy': book.total_copy + 1
+                })
+            self.env['book.payment'].create({
+                'rental_ids': (0, 0, self._origin.id),
+                'due_amount': self.due_price
+            })
+
         result = super(Rent, self).write(vals)
         return result
 
@@ -102,3 +95,4 @@ class Rent(models.Model):
     due_price = fields.Float(digits=(3,2), compute='_set_due_price')
     state = fields.Selection([('init','Init'),('draft', 'Draft'), ('rent', 'Rented'), ('return', 'Returned')],
                              default='init', readonly=True)
+    payment_ids = fields.Many2one('book.payment')
