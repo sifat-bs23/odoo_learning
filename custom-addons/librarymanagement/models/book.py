@@ -9,18 +9,18 @@ class Book(models.Model):
         for rec in self:
             if rec.price >= 500:
                 rec.category = 'high'
-            elif rec.price < 500 and rec.price >=250:
+            elif 500 > rec.price >= 250:
                 rec.category = 'normal'
             else:
                 rec.category = 'low'
 
     name = fields.Char(string='Book Name', max_lngth=100, required=True)
-    author = fields.One2many('author', 'book_name', string='Author Name')
+    author = fields.Many2many('author', 'book_name', string='Author Name')
     editor = fields.Char(string='Editors', max_length=100)
     edition = fields.Char(string='Edition', max_length=50)
     isbn = fields.Char(string='ISBN Number', max_length=50)
     image = fields.Binary(sring='Photo')
-    price = fields.Float(string='Price', digits=(4,2))
+    price = fields.Float(string='Price', digits=(4, 2))
     category = fields.Selection([
         ('high', 'Elite'), ('normal', 'Normal'), ('low', 'Low Grade')
     ], compute='_set_category')

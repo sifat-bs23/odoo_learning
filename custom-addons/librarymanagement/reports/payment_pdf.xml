@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="payment">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Customer Information</h2>
+                                <table class="table table-bordered" style="table-layout: fixed">
+                                    <colgroup width="120"/>
+                                    <colgroup width="120"/>
+                                    <colgroup width="120"/>
+                                    <colgroup width="120"/>
+                                    <colgroup width="120"/>
+                                    <colgroup width="120"/>
+                                    <tr>
+                                        <td>Customer Name</td>
+                                        <td>Customer Phone</td>
+                                        <td>Customer Mail</td>
+                                        <td>Rental date</td>
+                                        <td>Return date</td>
+                                        <td>Payment Date</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold"><t t-esc="doc.customer_ids.first_name"/> <t t-esc="doc.customer_ids.last_name"/> </td>
+                                        <td style="font-weight: bold"><t t-esc="doc.customer_ids.phone"/></td>
+                                        <td style="font-weight: bold"><t t-esc="doc.customer_ids.email"/></td>
+                                        <td style="font-weight: bold"><t t-esc="doc.rental_ids.rental_date"/></td>
+                                        <td style="font-weight: bold"><t t-esc="doc.rental_ids.return_date"/></td>
+                                        <td style="font-weight: bold"><t t-esc="doc.payment_date"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <h2>Book Lists</h2>
+                                <table class="table table-bordered" style="table-layout: fixed">
+                                    <tr>
+                                        <th>Book Name</th>
+                                        <th>Author Name</th>
+                                        <th>Category</th>
+                                        <th>Edition</th>
+                                    </tr>
+                                    <t t-foreach="doc.rental_ids.book" t-as="book">
+                                        <tr>
+                                            <td><t t-esc="book.name"/></td>
+                                            <td>
+                                                <t t-foreach="book.author" t-as="author">
+                                                    <span> <t t-esc="author.first_name"/> <t t-esc="author.last_name"/></span>
+                                                </t>
+                                            </td>
+                                            <td><t t-esc="book.category"/></td>
+                                            <td><t t-esc="book.edition"/></td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h2>Payments</h2>
+                            <div class="row mt-2">
+                                <table class="table">
+                                    <colgroup width="200"/>
+                                    <colgroup width="100"/>
+                                    <tr>
+                                        <td><b>Due Amount:</b></td>
+                                        <td style="text-align:right"><t t-esc="doc.due_amount"/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Extra Charge:</b></td>
+                                        <td style="text-align:right"><t t-esc="doc.extra_charge"/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Total Amount:</b></td>
+                                        <td style="text-align:right"><t t-esc="doc.total_amount"/> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

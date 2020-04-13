@@ -24,7 +24,7 @@
                         </group>
                     </group>
                     <group>
-                        <field name="book_name" widget="many2one_tags"/>
+                        <field name="book_name" widget="many2many_tags"/>
                     </group>
                 </sheet>
             </form>

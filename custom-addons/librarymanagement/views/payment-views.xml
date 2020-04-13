@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_pay" type="object" states="unpaid" string="Rent" class="oe_highlight"/>
+                    <button name="action_pay" type="object" states="unpaid" string="Pay" class="oe_highlight"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -25,10 +25,12 @@
                     </group>
                     <notebook>
                         <page string="Book" name="book-info">
-                            <field name="book_ids">
-                                <tree>
-                                    <field name="name"/>
-                                </tree>
+                            <field name="rental_ids">
+                                <field name="book_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
                             </field>
                         </page>
                         <page string="Customer" name="customer-info">
@@ -47,7 +49,7 @@
         <field name="name">payment.tree</field>
         <field name="model">book.payment</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="state=='unpaid'">
+            <tree decoration-danger="state=='unpaid'" decoration-success="state=='paid'">
                 <field name="customer_ids" widget="man2one_tags"/>
                 <field name="due_amount"/>
                 <field name="extra_charge"/>

@@ -29,6 +29,8 @@
         'views/customer-views.xml',
         'views/rental-views.xml',
         'views/payment-views.xml',
+        'reports/payment_pdf.xml',
+        'reports/report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -19,13 +19,12 @@ class Rent(models.Model):
     def get_book_errors(self, all_books):
         errors = ''
         if all_books:
-            for book in all_books:
-                get_cur_book = self.env['book'].search([
-                    ('id', '=', book)
-                ])
-                if get_cur_book.total_copy <= 0:
-                    errors += get_cur_book.name + ' is not available.'
-            return errors
+            get_cur_book = self.env['book'].search([
+                ('id', '=', all_books)
+            ])
+            if get_cur_book.total_copy <= 0:
+                errors += get_cur_book.name + ' is not available.'
+        return errors
 
     def action_rent(self):
         for rec in self:
@@ -34,7 +33,6 @@ class Rent(models.Model):
     def action_returned(self):
         for rec in self:
             rec.state = 'return'
-
 
     @api.constrains('return_date')
     def _set_constraint(self):
@@ -48,7 +46,7 @@ class Rent(models.Model):
         vals['state'] = 'draft'
         all_books = None
         if cur_book:
-            all_books = cur_book[0][2]
+            all_books = cur_book
         errors = self.get_book_errors(all_books)
 
         if errors:
@@ -62,7 +60,7 @@ class Rent(models.Model):
         cur_book = vals.get('book', None)
         all_books = []
         if cur_book:
-            all_books = cur_book[0][2]
+            all_books = cur_book
         if self.state == 'draft' and state != 'rent':
             errors = self.get_book_errors(all_books)
             if errors:
@@ -80,6 +78,7 @@ class Rent(models.Model):
                 book.write({
                     'total_copy': book.total_copy + 1
                 })
+
             self.env['book.payment'].create({
                 'rental_ids': (0, 0, self._origin.id),
                 'due_amount': self.due_price
@@ -88,11 +87,11 @@ class Rent(models.Model):
         result = super(Rent, self).write(vals)
         return result
 
-    book = fields.Many2many('book', required=True)
+    book = fields.Many2one('book', required=True)
     customer = fields.Many2one('customer', required=True)
     rental_date = fields.Datetime(string='Rental Date', default=datetime.datetime.now())
     return_date = fields.Datetime(string='Return Date', default=datetime.datetime.now() + datetime.timedelta(days=5))
-    due_price = fields.Float(digits=(3,2), compute='_set_due_price')
-    state = fields.Selection([('init','Init'),('draft', 'Draft'), ('rent', 'Rented'), ('return', 'Returned')],
+    due_price = fields.Float(digits=(3, 2), compute='_set_due_price')
+    state = fields.Selection([('init', 'Init'), ('draft', 'Draft'), ('rent', 'Rented'), ('return', 'Returned')],
                              default='init', readonly=True)
     payment_ids = fields.Many2one('book.payment')

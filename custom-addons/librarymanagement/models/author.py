@@ -1,5 +1,6 @@
 from odoo import models, fields
 
+
 class Author(models.Model):
     _name = 'author'
     _description = 'This table will contain information about Author'
@@ -9,4 +10,4 @@ class Author(models.Model):
     last_name = fields.Char(string='Last Name', max_length=100)
     phone = fields.Char(string='Phone Number', max_length=25)
     email = fields.Char(string='Email', max_length=50)
-    book_name = fields.Many2one('book')
+    book_name = fields.Many2many('book')

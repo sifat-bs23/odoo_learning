@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+        id="payment-report"
+        model="book.payment"
+        string="Payment Report"
+        report_type="qweb-pdf"
+        name="librarymanagement.payment"
+        file="library.payment"
+    />
+</odoo>
