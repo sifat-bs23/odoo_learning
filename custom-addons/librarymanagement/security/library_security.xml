@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="module_category_library">
+        <field name="name">Library</field>
+        <field name="description">Category for Library Management</field>
+        <field name="sequence">7</field>
+    </record>
+
+    <record id="library_admin" model="res.groups">
+        <field name="name">Library Admin</field>
+        <field name="category_id" ref="module_category_library"/>
+    </record>
+    <record id="library_book_manager" model="res.groups">
+        <field name="name">Book Manager</field>
+        <field name="category_id" ref="module_category_library"/>
+    </record>
+    <record id="library_rental_manager" model="res.groups">
+        <field name="name">Rental Manager</field>
+        <field name="category_id" ref="module_category_library"/>
+    </record>
+
+</odoo>

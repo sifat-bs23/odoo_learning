@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <report
-        id="payment-report"
-        model="book.payment"
-        string="Payment Report"
-        report_type="qweb-pdf"
-        name="librarymanagement.payment"
-        file="library.payment"
+            id="payment-report"
+            model="book.payment"
+            string="Payment Report Pdf"
+            report_type="qweb-pdf"
+            name="librarymanagement.payment"
+            file="library.payment"
+    />
+    <report
+            id="payment-report_xlsx"
+            model="book.payment"
+            string="Payment report XLSX"
+            report_type="xlsx"
+            name="librarymanagement.payment_xlsx"
+            file="librarymanagement.payment_xlsx"
+            attachment_use="False"
     />
 </odoo>

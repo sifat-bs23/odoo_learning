@@ -23,9 +23,11 @@
                             <field name="email"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="book_name" widget="many2many_tags"/>
-                    </group>
+                    <notebook>
+                        <page string="Book">
+                            <field name="book_name"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

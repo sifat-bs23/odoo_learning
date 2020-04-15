@@ -12,7 +12,7 @@ class Rent(models.Model):
     def _set_due_price(self):
         for rec in self:
             if rec.return_date < datetime.datetime.now():
-                rec.due_price = (datetime.datetime.now() - rec.return_date).days * (10)
+                rec.due_price = (datetime.datetime.now() - rec.return_date).days * ( 10 )
             else:
                 rec.due_price = 0
 

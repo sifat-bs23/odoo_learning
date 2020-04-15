@@ -17,12 +17,15 @@
     # for the full list
     'category': 'Extra Tools',
     'version': '0.1',
+    "license": "AGPL-3",
 
     # any module necessary for this one to work correctly
     'depends': [],
 
     # always loaded
     'data': [
+        'security/library_security.xml',
+        'security/ir.model.access.csv',
         'views/author-views.xml',
         'views/book-views.xml',
         'views/customer-views.xml',

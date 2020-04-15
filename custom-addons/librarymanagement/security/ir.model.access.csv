@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_library_author,access.library.author,librarymanagement.model_author,librarymanagement.library_admin,1,1,1,1
+access_library_book,access.library.book,librarymanagement.model_book,librarymanagement.library_admin,1,1,1,1
+access_library_rent,access.library.rent,librarymanagement.model_book_rent,librarymanagement.library_admin,1,1,1,1
+access_library_payment,access.library.payment,librarymanagement.model_book_payment,librarymanagement.library_admin,1,1,1,1
+access_library_customer,access.library.customer,librarymanagement.model_customer,librarymanagement.library_admin,1,1,1,1
+access_library_book_book_manager,access.library.book.book_manager,librarymanagement.model_book,librarymanagement.library_book_manager,1,1,1,1
+access_library_author_book_manager,access.library.author.book_manager,librarymanagement.model_author,librarymanagement.library_book_manager,1,1,1,1
+access_library_book_rental_manager,access.library.book.rental_manager,librarymanagement.model_book,librarymanagement.library_rental_manager,1,1,0,0
+access_library_author_rental_manager,access.library.author.rental_manager,librarymanagement.model_author,librarymanagement.library_rental_manager,1,0,0,0
+access_library_rental_rental_manager,access.library.rental.rental_manager,librarymanagement.model_book_rent,librarymanagement.library_rental_manager,1,1,1,1
+access_library_customer_rental_manager,access.library.customer.rental_manager,librarymanagement.model_customer,librarymanagement.library_rental_manager,1,1,1,0
+access_library_payment_rental_manager,access.library.payment.rental_manager,librarymanagement.model_book_payment,librarymanagement.library_rental_manager,1,1,1,0
+
+
