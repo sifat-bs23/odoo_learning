@@ -23,12 +23,12 @@
 
     # always loaded
     'data': [
-        'views/menu-items.xml',
         'views/author-views.xml',
         'views/book-views.xml',
         'views/customer-views.xml',
         'views/rental-views.xml',
         'views/payment-views.xml',
+        'views/menu-items.xml',
         'reports/payment_pdf.xml',
         'reports/report.xml',
     ],
