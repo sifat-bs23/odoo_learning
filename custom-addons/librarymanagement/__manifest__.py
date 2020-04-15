@@ -20,7 +20,7 @@
     "license": "AGPL-3",
 
     # any module necessary for this one to work correctly
-    'depends': [],
+    'depends': ['report_xlsx'],
 
     # always loaded
     'data': [

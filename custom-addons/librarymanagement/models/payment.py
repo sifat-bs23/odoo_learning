@@ -14,9 +14,8 @@ class Payment(models.Model):
     rental_ids = fields.One2many('book.rent', 'payment_ids')
     due_amount = fields.Float(digits=(4, 2))
     extra_charge = fields.Float(digits=(4, 2))
-    total_amount = fields.Float(digits=(4, 2), compute='_cal_total')
+    total_amount = fields.Float(digits=(4, 2), compute='_cal_total', store=True, readonly=True)
     payment_date = fields.Datetime(string='Payment Date', default=datetime.datetime.now())
-    # book_ids = fields.Many2many('book', related='rental_ids.book')
     customer_ids = fields.Many2one('customer', related='rental_ids.customer')
     state = fields.Selection([('unpaid', 'Unpaid'), ('paid', 'Paid')],
                              default='unpaid', readonly=True)

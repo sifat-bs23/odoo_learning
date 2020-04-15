@@ -9,12 +9,11 @@
             file="library.payment"
     />
     <report
-            id="payment-report_xlsx"
+            id="payment-report-xlsx"
             model="book.payment"
-            string="Payment report XLSX"
+            string="Payment Report Excel"
             report_type="xlsx"
             name="librarymanagement.payment_xlsx"
-            file="librarymanagement.payment_xlsx"
-            attachment_use="False"
+            file="library.payment_xlsx"
     />
 </odoo>

@@ -23,6 +23,9 @@
                             <field name="extra_charge"/>
                         </group>
                     </group>
+                    <group>
+                        <field name="total_amount"/>
+                    </group>
                     <notebook>
                         <page string="Book" name="book-info">
                             <field name="rental_ids">
@@ -58,10 +61,20 @@
             </tree>
         </field>
     </record>
+    <record model="ir.ui.view" id="payment-graph">
+        <field name="name">payment.graph</field>
+        <field name="model">book.payment</field>
+        <field name="arch" type="xml">
+            <graph string="Payment Graph">
+                <field name="state"/>
+                <field name="total_amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
     <record model="ir.actions.act_window" id="action_payment">
         <field name="name">Payment</field>
         <field name="res_model">book.payment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph</field>
         <field name="help" type="html">
             <p>Create Rent.</p>
         </field>
