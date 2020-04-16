@@ -27,9 +27,9 @@
                                         <td style="font-weight: bold"><t t-esc="doc.customer_ids.first_name"/> <t t-esc="doc.customer_ids.last_name"/> </td>
                                         <td style="font-weight: bold"><t t-esc="doc.customer_ids.phone"/></td>
                                         <td style="font-weight: bold"><t t-esc="doc.customer_ids.email"/></td>
-                                        <td style="font-weight: bold"><t t-esc="doc.rental_ids.rental_date"/></td>
-                                        <td style="font-weight: bold"><t t-esc="doc.rental_ids.return_date"/></td>
-                                        <td style="font-weight: bold"><t t-esc="doc.payment_date"/></td>
+                                        <td style="font-weight: bold"><span  t-esc="datetime.datetime.strftime(doc.rental_ids.rental_date, '%d/%m/%Y')" /></td>
+                                        <td style="font-weight: bold"><span  t-esc="datetime.datetime.strftime(doc.rental_ids.return_date, '%d/%m/%Y')" /></td>
+                                        <td style="font-weight: bold"><span  t-esc="datetime.datetime.strftime(doc.payment_date, '%d/%m/%Y')" /></td>
                                     </tr>
                                 </table>
                             </div>
